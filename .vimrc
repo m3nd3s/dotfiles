@@ -27,15 +27,19 @@ Plug 'ngmy/vim-rubocop'
 Plug 'jgdavey/tslime.vim'
 Plug 'thoughtbot/vim-rspec'
 Plug 'Chun-Yang/vim-action-ag'
+Plug 'tpope/vim-surround'
+Plug 'tmhedberg/matchit'
+Plug 'leafgarland/typescript-vim'
+Plug 'jgdavey/vim-blockle'
+Plug 'posva/vim-vue'
+Plug 'ap/vim-css-color'
+
 call plug#end()
 
 set nocompatible
 
 " Use pathogen to easily modify the runtime path to include all
 " plugins under the ~/.vim/bundle directory
-"call pathogen#infect()
-"call pathogen#helptags()
-"call pathogen#runtime_append_all_bundles()
 filetype on
 filetype plugin on
 filetype indent on
@@ -76,6 +80,8 @@ set visualbell           " don't beep
 set noerrorbells         " don't beep
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
+set undofile  "Maintain undo history between sessions
+set undodir=~/.vim/undodir
 set nobackup
 set noswapfile
 set nowritebackup
@@ -129,6 +135,7 @@ au BufRead,BufNewFile Gemfile set filetype=Gemfile
 
 " Javascript syntax
 au BufRead,BufNewFile *.js.* set filetype=javascript
+au BufRead,BufNewFile *.ts set filetype=javascript
 
 " JSON syntax
 au BufRead,BufNewFile *.json.* set filetype=javascript
@@ -220,9 +227,9 @@ set showmode
 nmap <Leader>cs :let @*=expand("%")<CR>
 nmap <Leader>cl :let @*=expand("%:p")<CR>
 
-" Copy/Paste
-"vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
-"vmap <Leader>{ :Tab /^[^{]*\zs{<CR>
-
-" vnoremap J :m '>+1<CR>gv=gv
-" vnoremap K :m '<-2<CR>gv=gv
+" Vim miltiple cursors remap
+let g:multi_cursor_next_key  = '<C-n>'
+let g:multi_cursor_prev_key  = '<C-p>'
+let g:multi_cursor_skip_key  = '<C-x>'
+let g:multi_cursor_quit_key  = '<Esc>'
+let g:multi_cursor_start_key = '<F6>'
