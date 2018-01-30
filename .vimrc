@@ -100,11 +100,14 @@ set ttyfast
 au User Rails let b:surround_{char2nr('-')} = "<% \r %>"
 
 " Wildignore
-set wildignore+=*.o,*.obj,system*,*.jpg,*.png,*.gif,*.log,tmp,yard_templates,coverage
+set wildignore+=*.o,*.obj,system*,*.svg,*.ttf,*.eot,*.jpg,*.png,*.gif,*.log,tmp,yard_templates,coverage
 set list listchars=tab:»·,trail:·
 
 " Set statusline
 set laststatus=2
+
+" Set column limit
+set colorcolumn=120
 
 
 "" Encoding
@@ -123,7 +126,7 @@ au BufRead,BufNewFile *.mkd setfiletype mkd
 au BufRead,BufNewFile *.markdown setfiletype mkd
 
 " Auto lang and spell
-setlocal spell spelllang=pt
+" setlocal spell spelllang=pt
 au BufRead,BufNewFile *.mkd,*.md,*.markdown,*.txt setlocal spell
 "autocmd FileType ruby set nospell
 
@@ -161,7 +164,7 @@ let g:ctrlp_working_path_mode = 'ra'
 
 if executable('ag')
   " Use Ag over Grep
-  let g:ag_prg="ag --vimgrep"
+  let g:ag_prg="ag -i --vimgrep"
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -197,14 +200,15 @@ set go-=T
 set ttimeoutlen=50
 
 " Airline
-let g:airline_theme='solarized'
+"let g:airline_theme='solarized'
+let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
 
 " Remove trailing whitespace
 au BufWritePre * :%s/\s\+$//e
 
-let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("rspec -f d {spec}\n")'
 
 " Format inline XML using gg=G
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
@@ -233,3 +237,6 @@ let g:multi_cursor_prev_key  = '<C-p>'
 let g:multi_cursor_skip_key  = '<C-x>'
 let g:multi_cursor_quit_key  = '<Esc>'
 let g:multi_cursor_start_key = '<F6>'
+
+" RubyNewHashNotation
+command! -range=% RubyNewHashNotation silent execute <line1>.','.<line2>.'s/:\(\w\+\)\s*=>\s*/\1: /g'
