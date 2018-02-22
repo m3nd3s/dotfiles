@@ -134,7 +134,7 @@ au FileType *_spec.rb set filetype=ruby.ruby-rspec
 au BufRead,BufNewFile .pryrc setfiletype ruby
 
 " Gemfile syntax
-au BufRead,BufNewFile Gemfile set filetype=Gemfile
+au BufRead,BufNewFile Gemfile set filetype=ruby
 
 " Javascript syntax
 au BufRead,BufNewFile *.js.* set filetype=javascript
@@ -240,3 +240,6 @@ let g:multi_cursor_start_key = '<F6>'
 
 " RubyNewHashNotation
 command! -range=% RubyNewHashNotation silent execute <line1>.','.<line2>.'s/:\(\w\+\)\s*=>\s*/\1: /g'
+
+" Configure snipMate
+let g:description_in_completion = 1
