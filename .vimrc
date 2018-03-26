@@ -1,8 +1,11 @@
 " Vim plugins
 call plug#begin('~/.vim/plugged')
+Plug '/usr/local/opt/fzf'
+Plug '~/.fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'rstacruz/sparkup'
 Plug 'rking/ag.vim'
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
 Plug 'godlygeek/tabular'
 Plug 'rodjek/vim-puppet'
 Plug 'tomtom/tlib_vim'
@@ -109,7 +112,6 @@ set laststatus=2
 " Set column limit
 set colorcolumn=120
 
-
 "" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -149,30 +151,56 @@ au BufRead,BufNewFile .tmux.conf set ft=tmux
 " This is just a handy trick to automatically load the .vimrc file whenever
 " you save it. I usually tweak something and I want it to take effect
 " immediately, that’s why I have this setting.
-au BufWritePost .vimrc so $MYVIMRC
+" au BufWritePost .vimrc so $MYVIMRC
 
 set background=dark
 let g:solarized_termtrans = 1
 colorscheme solarized
 
-" CTRLP
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
-let g:ctrlp_working_path_mode = 'ra'
+" FZF
+map <Leader>f :FZF<CR>
+if executable('fzf')
+  " FZF {{{
+  " <C-p> or <C-t> to search files
+  nnoremap <silent> <C-t> :FZF -m<cr>
+  nnoremap <silent> <C-p> :FZF -m<cr>
 
-if executable('ag')
-  " Use Ag over Grep
-  let g:ag_prg="ag -i --vimgrep"
+  " <M-p> for open buffers
+  nnoremap <silent> <M-p> :Buffers<cr>
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " <M-S-p> for MRU
+  nnoremap <silent> <M-S-p> :History<cr>
 
-  " use cache
-  let g:ctrlp_use_caching = 1
-endif
-map <leader>F :CtrlPClearCache<cr>:CtrlP<cr>
+  " Use fuzzy completion relative filepaths across directory
+  imap <expr> <c-x><c-f> fzf#vim#complete#path('git ls-files $(git rev-parse --show-toplevel)')
+
+  command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+  " }}}
+else
+  " CTRLP
+  set runtimepath^=~/.vim/bundle/ctrlp.vim
+  let g:ctrlp_map = '<c-p>'
+  let g:ctrlp_cmd = 'CtrlP'
+  let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+  let g:ctrlp_working_path_mode = 'ra'
+
+  if executable('ag')
+    " Use Ag over Grep
+    let g:ag_prg="ag -i --vimgrep"
+
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g'
+
+    " use cache
+    let g:ctrlp_use_caching = 1
+  endif
+  map <leader>F :CtrlPClearCache<cr>:CtrlP<cr>
+end
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
