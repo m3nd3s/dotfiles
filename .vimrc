@@ -5,7 +5,6 @@ Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'rstacruz/sparkup'
 Plug 'rking/ag.vim'
-" Plug 'kien/ctrlp.vim'
 Plug 'godlygeek/tabular'
 Plug 'rodjek/vim-puppet'
 Plug 'tomtom/tlib_vim'
@@ -36,6 +35,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'jgdavey/vim-blockle'
 Plug 'posva/vim-vue'
 Plug 'ap/vim-css-color'
+Plug 'jayflo/vim-skip'
 
 call plug#end()
 
@@ -159,6 +159,7 @@ colorscheme solarized
 
 " FZF
 map <Leader>f :FZF<CR>
+let g:fzf_buffers_jump = 1
 if executable('fzf')
   " FZF {{{
   " <C-p> or <C-t> to search files
@@ -202,6 +203,11 @@ else
   map <leader>F :CtrlPClearCache<cr>:CtrlP<cr>
 end
 
+if executable('ag')
+  " Use Ag over Grep
+  let g:ag_prg="ag -i --vimgrep"
+end
+
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
@@ -236,7 +242,7 @@ let g:airline#extensions#branch#enabled = 1
 " Remove trailing whitespace
 au BufWritePre * :%s/\s\+$//e
 
-let g:rspec_command = 'call Send_to_Tmux("rspec -f d {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 " Format inline XML using gg=G
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
