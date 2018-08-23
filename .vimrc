@@ -182,30 +182,30 @@ if executable('fzf')
   \                 <bang>0)
 
   " }}}
-else
-  " CTRLP
-  set runtimepath^=~/.vim/bundle/ctrlp.vim
-  let g:ctrlp_map = '<c-p>'
-  let g:ctrlp_cmd = 'CtrlP'
-  let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
-  let g:ctrlp_working_path_mode = 'ra'
-
-  if executable('ag')
-    " Use Ag over Grep
-    let g:ag_prg="ag -i --vimgrep"
-
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g'
-
-    " use cache
-    let g:ctrlp_use_caching = 1
-  endif
-  map <leader>F :CtrlPClearCache<cr>:CtrlP<cr>
+" else
+"   " CTRLP
+"   set runtimepath^=~/.vim/bundle/ctrlp.vim
+"   let g:ctrlp_map = '<c-p>'
+"   let g:ctrlp_cmd = 'CtrlP'
+"   let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+"   let g:ctrlp_working_path_mode = 'ra'
+"
+"   if executable('ag')
+"     " Use Ag over Grep
+"     let g:ag_prg="ag -i --vimgrep --path-to-ignore ~/.ignore"
+"
+"     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+"     let g:ctrlp_user_command = 'ag %s -l --nocolor -g'
+"
+"     " use cache
+"     let g:ctrlp_use_caching = 1
+"   endif
+"   map <leader>F :CtrlPClearCache<cr>:CtrlP<cr>
 end
 
 if executable('ag')
   " Use Ag over Grep
-  let g:ag_prg="ag -i --vimgrep"
+  let g:ag_prg="ag -i --vimgrep --path-to-ignore ~/.ignore"
 end
 
 " Open new split panes to right and bottom, which feels more natural
@@ -264,6 +264,7 @@ set showmode
 
 nmap <Leader>cs :let @*=expand("%")<CR>
 nmap <Leader>cl :let @*=expand("%:p")<CR>
+nmap <Leader>cr :let @*=('rspec ' . expand("%") . ':' . line("."))<CR>
 
 " Vim miltiple cursors remap
 let g:multi_cursor_next_key  = '<C-n>'
