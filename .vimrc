@@ -36,6 +36,7 @@ Plug 'jgdavey/vim-blockle'
 Plug 'posva/vim-vue'
 Plug 'ap/vim-css-color'
 Plug 'jayflo/vim-skip'
+Plug 'wellle/targets.vim'
 
 call plug#end()
 
@@ -67,7 +68,6 @@ set backspace=indent,eol,start
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
 set number        " always show line numbers
-"set relativenumber" enable relative numbers
 set numberwidth=5
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
@@ -76,7 +76,7 @@ set smartcase     " ignore case if search pattern is all lowercase,
                   "    case-sensitive otherwise
 set smarttab      " insert tabs on the start of a line according to
                   "    shiftwidth, not tabstop
-set nohlsearch    " highlight search terms
+set hlsearch    " highlight search terms
 set incsearch     " show search matches as you type
 set title
 set visualbell           " don't beep
@@ -212,17 +212,6 @@ end
 set splitbelow
 set splitright
 
-" Some maps for MacOS and Tabs
-nmap <D-1> 1gt<cr>
-nmap <D-2> 2gt<cr>
-nmap <D-3> 3gt<cr>
-nmap <D-4> 4gt<cr>
-nmap <D-5> 5gt<cr>
-nmap <D-6> 6gt<cr>
-nmap <D-7> 7gt<cr>
-nmap <D-8> 8gt<cr>
-nmap <D-9> 9gt<cr>
-
 nmap <C-l> :NERDTreeToggle<cr>
 let g:NERDTreeWinSize = 40
 
@@ -234,7 +223,6 @@ set go-=T
 set ttimeoutlen=50
 
 " Airline
-"let g:airline_theme='solarized'
 let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
