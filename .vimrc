@@ -96,6 +96,10 @@ set ttymouse=xterm2
 set wildmenu "Better popup menu
 set confirm "Dialog to ask when closing unsave changes
 
+"Disable sounds and screen flashing
+set visualbell
+set t_vb=
+
 "May be improve the speed
 set lazyredraw
 set ttyfast
