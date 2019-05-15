@@ -252,3 +252,22 @@ let g:description_in_completion = 1
 
 " Map nohlsearch
 nmap <silent> ./ :nohlsearch <CR>
+
+function! RepositoryCopyLineUrl()
+  let line1 = a:firstline
+  let line2 = a:lastline
+  let commit = substitute(system('git rev-parse HEAD'), '[\]\|[[:cntrl:]]', '', 'g')
+  let cmd = 'git ls-remote --get-url | sed "s/:/\//g" | sed "s/git@/https:\/\//g" | sed "s/\.git/\/blob\//g"'
+  let result = substitute(system(cmd), '[\]\|[[:cntrl:]]', '', 'g')
+
+  if line1 != line2
+    let lines = '#L' . line1 . '-' . line2
+  else
+    let lines = '#L' . line1
+  endif
+
+  let @*=(result . commit . '/' . expand("%") . lines)
+endfunction
+
+nmap <Leader>cg :call RepositoryCopyLineUrl()<CR>
+vnoremap <Leader>cg :call RepositoryCopyLineUrl()<CR>
