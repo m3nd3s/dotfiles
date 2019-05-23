@@ -3,5 +3,5 @@ splitw -h
 neww -n Coding
 splitw -h
 selectw -t 2
-selectp -t 2
+selectp -t 1
 splitw -v
