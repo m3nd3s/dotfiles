@@ -196,6 +196,7 @@ set splitbelow
 set splitright
 
 nmap <C-l> :NERDTreeToggle<cr>
+nmap <C-k> :NERDTreeFind<cr>
 let g:NERDTreeWinSize = 40
 
 " Tagbar

@@ -1,0 +1,7 @@
+new-session -s RD -n Services
+splitw -h
+neww -n Coding
+splitw -h
+selectw -t 2
+selectp -t 2
+splitw -v
