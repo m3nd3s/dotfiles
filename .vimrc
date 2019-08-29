@@ -33,10 +33,13 @@ Plug 'tpope/vim-surround'
 Plug 'tmhedberg/matchit'
 Plug 'leafgarland/typescript-vim'
 Plug 'jgdavey/vim-blockle'
-Plug 'posva/vim-vue'
-Plug 'ap/vim-css-color'
 Plug 'jayflo/vim-skip'
 Plug 'wellle/targets.vim'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-repeat'
+Plug 'sheerun/vim-polyglot'
+Plug 'sotte/presenting.vim'
+" Plug 'zxqfl/tabnine-vim'
 
 call plug#end()
 
@@ -53,6 +56,7 @@ syntax on
 " Leader key
 let mapleader=","
 
+set shell=/bin/bash
 set hidden
 set nowrap        " don't wrap lines
 set tabstop=2
@@ -120,6 +124,8 @@ set colorcolumn=120
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
+
+set redrawtime=10000
 
 " show tab number
 au BufRead,BufNewFile * set guitablabel=%N.\ %t\ %M
@@ -214,6 +220,7 @@ let g:airline#extensions#branch#enabled = 1
 " Remove trailing whitespace
 au BufWritePre * :%s/\s\+$//e
 
+let g:rspec_runner = "os_x_iterm2"
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 " Format inline XML using gg=G
@@ -226,10 +233,10 @@ noremap <Leader>h :split<CR>
 noremap <Leader>v :vsplit<CR>
 
 " vim-rspec mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+nnoremap <silent> <Leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <silent> <Leader>s :call RunNearestSpec()<CR>
+nnoremap <silent> <Leader>l :call RunLastSpec()<CR>
+nnoremap <silent> <Leader>a :call RunAllSpecs()<CR>
 
 set pastetoggle=<F2>
 set showmode
@@ -237,6 +244,7 @@ set showmode
 nmap <Leader>cs :let @*=expand("%")<CR>
 nmap <Leader>cl :let @*=expand("%:p")<CR>
 nmap <Leader>cr :let @*=('rspec ' . expand("%") . ':' . line("."))<CR>
+nmap <Leader>ct :let @*=('rspec ' . expand("%"))<CR>
 
 " Vim miltiple cursors remap
 let g:multi_cursor_next_key  = '<C-n>'
@@ -272,3 +280,9 @@ endfunction
 
 nmap <Leader>cg :call RepositoryCopyLineUrl()<CR>
 vnoremap <Leader>cg :call RepositoryCopyLineUrl()<CR>
+
+" ALE
+let g:ale_lint_delay = 3000
+
+" Tabnine options
+"let g:ycm_key_list_select_completion = ['<Down>']
