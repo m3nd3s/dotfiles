@@ -15,6 +15,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'yaymukund/vim-rabl'
 Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'nelstrom/vim-textobj-rubyblock'
@@ -35,11 +36,29 @@ Plug 'leafgarland/typescript-vim'
 Plug 'jgdavey/vim-blockle'
 Plug 'jayflo/vim-skip'
 Plug 'wellle/targets.vim'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'tpope/vim-repeat'
 Plug 'sheerun/vim-polyglot'
 Plug 'sotte/presenting.vim'
 " Plug 'zxqfl/tabnine-vim'
+
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/1.x',
+  \ 'for': [
+    \ 'javascript',
+    \ 'css',
+    \ 'scss',
+    \ 'json',
+    \ 'graphql',
+    \ 'markdown',
+    \ 'vue',
+    \ 'lua',
+    \ 'php',
+    \ 'python',
+    \ 'ruby',
+    \ 'html',
+    \ 'swift' ] }
 
 call plug#end()
 
@@ -204,6 +223,8 @@ set splitright
 nmap <C-l> :NERDTreeToggle<cr>
 nmap <C-k> :NERDTreeFind<cr>
 let g:NERDTreeWinSize = 40
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -283,6 +304,9 @@ vnoremap <Leader>cg :call RepositoryCopyLineUrl()<CR>
 
 " ALE
 let g:ale_lint_delay = 3000
+
+" Prettier
+let g:prettier#autoformat = 0
 
 " Tabnine options
 "let g:ycm_key_list_select_completion = ['<Down>']
