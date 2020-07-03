@@ -3,44 +3,26 @@ call plug#begin('~/.vim/plugged')
 Plug '/usr/local/opt/fzf'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'rstacruz/sparkup'
 Plug 'rking/ag.vim'
-Plug 'godlygeek/tabular'
-Plug 'rodjek/vim-puppet'
 Plug 'tomtom/tlib_vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
-Plug 'yaymukund/vim-rabl'
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
-Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Shutnik/jshint2.vim'
-Plug 'rorymckinley/vim-rubyhash'
-Plug 'kana/vim-textobj-user'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'danchoi/ruby_bashrockets.vim'
-Plug 'ngmy/vim-rubocop'
 Plug 'jgdavey/tslime.vim'
-Plug 'thoughtbot/vim-rspec'
-Plug 'Chun-Yang/vim-action-ag'
 Plug 'tpope/vim-surround'
-Plug 'tmhedberg/matchit'
-Plug 'leafgarland/typescript-vim'
-Plug 'jgdavey/vim-blockle'
-Plug 'jayflo/vim-skip'
 Plug 'wellle/targets.vim'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-repeat'
 Plug 'sheerun/vim-polyglot'
-Plug 'sotte/presenting.vim'
-" Plug 'zxqfl/tabnine-vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'keith/rspec.vim'
 
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -161,7 +143,6 @@ au BufRead,BufNewFile *.markdown setfiletype mkd
 au BufRead,BufNewFile *.mkd,*.md,*.markdown,*.txt setlocal spell
 "autocmd FileType ruby set nospell
 
-au FileType *_spec.rb set filetype=ruby.ruby-rspec
 au BufRead,BufNewFile .pryrc setfiletype ruby
 
 " Gemfile syntax
@@ -247,9 +228,6 @@ let g:airline#extensions#tabline#show_tab_nr = 0
 " Remove trailing whitespace
 au BufWritePre * :%s/\s\+$//e
 
-let g:rspec_runner = "os_x_iterm2"
-let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
-
 " Format inline XML using gg=G
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 au FileType json setlocal equalprg=python\ -m\ json.tool
@@ -259,19 +237,13 @@ au FileType json setlocal equalprg=python\ -m\ json.tool
 noremap <Leader>h :split<CR>
 noremap <Leader>v :vsplit<CR>
 
-" vim-rspec mappings
-nnoremap <silent> <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <silent> <Leader>s :call RunNearestSpec()<CR>
-nnoremap <silent> <Leader>l :call RunLastSpec()<CR>
-nnoremap <silent> <Leader>a :call RunAllSpecs()<CR>
-
 set pastetoggle=<F2>
 set showmode
 
 nmap <Leader>cs :let @*=expand("%")<CR>
 nmap <Leader>cl :let @*=expand("%:p")<CR>
-nmap <Leader>cr :let @*=('rspec ' . expand("%") . ':' . line("."))<CR>
-nmap <Leader>ct :let @*=('rspec ' . expand("%"))<CR>
+nmap <Leader>cr :let @*=('rspec -f documentation ' . expand("%") . ':' . line("."))<CR>
+nmap <Leader>ct :let @*=('rspec -f documentation ' . expand("%"))<CR>
 
 " Vim miltiple cursors remap
 let g:multi_cursor_next_key  = '<C-n>'
@@ -309,10 +281,12 @@ nmap <Leader>cg :call RepositoryCopyLineUrl()<CR>
 vnoremap <Leader>cg :call RepositoryCopyLineUrl()<CR>
 
 " ALE
-let g:ale_lint_delay = 3000
+let g:ale_lint_delay = 2500
 
 " Prettier
 let g:prettier#autoformat = 0
 
-" Tabnine options
-"let g:ycm_key_list_select_completion = ['<Down>']
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
