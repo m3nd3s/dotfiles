@@ -23,6 +23,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'keith/rspec.vim'
+Plug 'adelarsq/vim-matchit'
 
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
