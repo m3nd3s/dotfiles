@@ -1,7 +1,5 @@
 " Vim plugins
 call plug#begin('~/.vim/plugged')
-Plug '/usr/local/opt/fzf'
-Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'rking/ag.vim'
 Plug 'tomtom/tlib_vim'
@@ -24,7 +22,6 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'keith/rspec.vim'
 Plug 'adelarsq/vim-matchit'
-Plug 'frazrepo/vim-rainbow'
 
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -170,6 +167,8 @@ let g:solarized_termtrans = 1
 colorscheme solarized
 
 " FZF
+set rtp+=/usr/local/opt/fzf
+
 map <Leader>f :FZF<CR>
 let g:fzf_buffers_jump = 1
 if executable('fzf')
@@ -292,6 +291,3 @@ let g:prettier#autoformat = 0
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-"rainbow parentheses improved
-let g:rainbow_active = 1
