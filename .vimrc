@@ -21,6 +21,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'keith/rspec.vim'
+Plug 'thoughtbot/vim-rspec'
 Plug 'adelarsq/vim-matchit'
 
 Plug 'prettier/vim-prettier', {
@@ -235,6 +236,13 @@ au FileType json setlocal equalprg=python\ -m\ json.tool
 
 set pastetoggle=<F2>
 set showmode
+
+" vim-rspec mappings
+let g:rspec_command = 'call Send_to_Tmux("rspec -f documentation {spec}\n")'
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 nmap <Leader>cs :let @*=expand("%")<CR>
 nmap <Leader>cl :let @*=expand("%:p")<CR>
