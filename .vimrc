@@ -233,11 +233,6 @@ au BufWritePre * :%s/\s\+$//e
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 au FileType json setlocal equalprg=python\ -m\ json.tool
 
-" Mapping
-"
-noremap <Leader>h :split<CR>
-noremap <Leader>v :vsplit<CR>
-
 set pastetoggle=<F2>
 set showmode
 
@@ -291,3 +286,8 @@ let g:prettier#autoformat = 0
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Edit vimr configuration file
+nnoremap <Leader>ve :tabe $MYVIMRC<CR>
+" " Reload vimr configuration file
+nnoremap <Leader>vr :source $MYVIMRC<CR>
