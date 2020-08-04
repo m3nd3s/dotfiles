@@ -1,6 +1,6 @@
 " Vim plugins
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'rking/ag.vim'
 Plug 'tomtom/tlib_vim'
 Plug 'bling/vim-airline'
