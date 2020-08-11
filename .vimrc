@@ -1,6 +1,5 @@
 " Vim plugins
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'rking/ag.vim'
 Plug 'tomtom/tlib_vim'
 Plug 'bling/vim-airline'
@@ -11,7 +10,6 @@ Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/nerdtree'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'jgdavey/tslime.vim'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
@@ -23,6 +21,8 @@ Plug 'honza/vim-snippets'
 Plug 'keith/rspec.vim'
 Plug 'thoughtbot/vim-rspec'
 Plug 'adelarsq/vim-matchit'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -248,13 +248,6 @@ nmap <Leader>cs :let @*=expand("%")<CR>
 nmap <Leader>cl :let @*=expand("%:p")<CR>
 nmap <Leader>cr :let @*=('rspec -f documentation ' . expand("%") . ':' . line("."))<CR>
 nmap <Leader>ct :let @*=('rspec -f documentation ' . expand("%"))<CR>
-
-" Vim miltiple cursors remap
-let g:multi_cursor_next_key  = '<C-n>'
-let g:multi_cursor_prev_key  = '<C-p>'
-let g:multi_cursor_skip_key  = '<C-x>'
-let g:multi_cursor_quit_key  = '<Esc>'
-let g:multi_cursor_start_key = '<F6>'
 
 " RubyNewHashNotation
 command! -range=% RubyNewHashNotation silent execute <line1>.','.<line2>.'s/:\(\w\+\)\s*=>\s*/\1: /g'
