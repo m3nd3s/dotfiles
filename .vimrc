@@ -167,9 +167,6 @@ set background=dark
 let g:solarized_termtrans = 1
 colorscheme solarized
 
-" FZF
-set rtp+=/usr/local/opt/fzf
-
 map <Leader>f :FZF<CR>
 let g:fzf_buffers_jump = 1
 if executable('fzf')
