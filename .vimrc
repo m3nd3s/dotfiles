@@ -167,34 +167,21 @@ set background=dark
 let g:solarized_termtrans = 1
 colorscheme solarized
 
-map <Leader>f :FZF<CR>
+"FZF Configiration
 let g:fzf_buffers_jump = 1
-if executable('fzf')
-  " FZF {{{
-  " <C-p> or <C-t> to search files
-  nnoremap <silent> <C-t> :FZF -m<cr>
-  nnoremap <silent> <C-p> :FZF -m<cr>
+let g:fzf_preview_window = 'right:50%'
+nnoremap <silent> <C-t> :Files<cr>
+nnoremap <silent> <C-p> :Files<cr>
 
-  " <M-p> for open buffers
-  nnoremap <silent> <M-p> :Buffers<cr>
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
 
-  " <M-S-p> for MRU
-  nnoremap <silent> <M-S-p> :History<cr>
-
-  " Use fuzzy completion relative filepaths across directory
-  imap <expr> <c-x><c-f> fzf#vim#complete#path('git ls-files $(git rev-parse --show-toplevel)')
-
-  command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
-end
-
-if executable('ag')
-  " Use Ag over Grep
-  let g:ag_prg="ag -i --vimgrep --path-to-ignore ~/.ignore"
-end
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
