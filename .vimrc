@@ -23,6 +23,7 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'adelarsq/vim-matchit'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -43,6 +44,13 @@ Plug 'prettier/vim-prettier', {
     \ 'swift' ] }
 
 call plug#end()
+
+"set background=dark
+colorscheme dracula
+set termguicolors
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
 
 set nocompatible
 
@@ -128,20 +136,12 @@ set fileencodings=utf-8
 
 set redrawtime=10000
 
-" show tab number
-au BufRead,BufNewFile * set guitablabel=%N.\ %t\ %M
-
-"Nginx syntaxe
-au BufRead,BufNewFile /usr/local/nginx/conf/* set ft=nginx
-
 "Markdown syntax
 au BufRead,BufNewFile *.mkd setfiletype mkd
 au BufRead,BufNewFile *.markdown setfiletype mkd
 
 " Auto lang and spell
-" setlocal spell spelllang=pt
 au BufRead,BufNewFile *.mkd,*.md,*.markdown,*.txt setlocal spell
-"autocmd FileType ruby set nospell
 
 au BufRead,BufNewFile .pryrc setfiletype ruby
 
@@ -158,20 +158,12 @@ au BufRead,BufNewFile *.json.* set filetype=javascript
 " Tmux syntax
 au BufRead,BufNewFile .tmux.conf set ft=tmux
 
-" This is just a handy trick to automatically load the .vimrc file whenever
-" you save it. I usually tweak something and I want it to take effect
-" immediately, that’s why I have this setting.
-" au BufWritePost .vimrc so $MYVIMRC
-
-set background=dark
-let g:solarized_termtrans = 1
-colorscheme solarized
+"let g:solarized_termtrans = 1
 
 "FZF Configiration
 let g:fzf_buffers_jump = 1
-let g:fzf_preview_window = 'right:50%'
-nnoremap <silent> <C-t> :Files<cr>
-nnoremap <silent> <C-p> :Files<cr>
+let g:fzf_layout = { 'down': '~40%' }
+nnoremap <silent> <leader>f :GFiles<cr>
 
 function! RipgrepFzf(query, fullscreen)
   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
@@ -182,6 +174,12 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+"Ag
+if executable('ag')
+  " Use Ag over Grep
+  let g:ag_prg="ag -i --vimgrep --path-to-ignore ~/.ignore"
+end
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -223,10 +221,10 @@ set showmode
 
 " vim-rspec mappings
 let g:rspec_command = 'call Send_to_Tmux("rspec -f documentation {spec}\n")'
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>tt :call RunCurrentSpecFile()<CR>
+map <Leader>ts :call RunNearestSpec()<CR>
+map <Leader>tl :call RunLastSpec()<CR>
+map <Leader>ta :call RunAllSpecs()<CR>
 
 nmap <Leader>cs :let @*=expand("%")<CR>
 nmap <Leader>cl :let @*=expand("%:p")<CR>
@@ -260,9 +258,6 @@ endfunction
 
 nmap <Leader>cg :call RepositoryCopyLineUrl()<CR>
 vnoremap <Leader>cg :call RepositoryCopyLineUrl()<CR>
-
-" ALE
-let g:ale_lint_delay = 2500
 
 " Prettier
 let g:prettier#autoformat = 0
