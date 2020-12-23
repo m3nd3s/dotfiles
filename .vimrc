@@ -4,12 +4,11 @@ Plug 'rking/ag.vim'
 Plug 'tomtom/tlib_vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
-Plug 'tomtom/tcomment_vim'
-Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdtree'
 Plug 'jgdavey/tslime.vim'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
@@ -45,7 +44,7 @@ Plug 'prettier/vim-prettier', {
 
 call plug#end()
 
-"set background=dark
+set background=dark
 colorscheme dracula
 set termguicolors
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
@@ -158,8 +157,6 @@ au BufRead,BufNewFile *.json.* set filetype=javascript
 " Tmux syntax
 au BufRead,BufNewFile .tmux.conf set ft=tmux
 
-"let g:solarized_termtrans = 1
-
 "FZF Configiration
 let g:fzf_buffers_jump = 1
 let g:fzf_layout = { 'down': '~40%' }
@@ -199,12 +196,12 @@ set go-=T
 set ttimeoutlen=50
 
 " Airline
-let g:airline_theme='base16'
+let g:airline_theme='dracula'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
@@ -271,3 +268,5 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 nnoremap <Leader>ve :tabe $MYVIMRC<CR>
 " " Reload vimr configuration file
 nnoremap <Leader>vr :source $MYVIMRC<CR>
+
+nnoremap <silent> <Leader>n :!open %<CR><CR>
