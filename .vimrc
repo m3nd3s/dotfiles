@@ -44,8 +44,9 @@ Plug 'prettier/vim-prettier', {
 
 call plug#end()
 
-set background=dark
 colorscheme dracula
+let g:dracula_colorterm = 0
+set background=dark
 set termguicolors
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
@@ -102,7 +103,7 @@ set noswapfile
 set nowritebackup
 set autoread "Teoricamente deve recarregar o arquivo quando alterado
 set guioptions-=r " Removes right hand scroll bar
-set clipboard+=unnamed
+set clipboard=unnamedplus
 set mouse=a
 set ttymouse=xterm2
 set wildmenu "Better popup menu
@@ -223,10 +224,10 @@ map <Leader>ts :call RunNearestSpec()<CR>
 map <Leader>tl :call RunLastSpec()<CR>
 map <Leader>ta :call RunAllSpecs()<CR>
 
-nmap <Leader>cs :let @*=expand("%")<CR>
-nmap <Leader>cl :let @*=expand("%:p")<CR>
-nmap <Leader>cr :let @*=('rspec -f documentation ' . expand("%") . ':' . line("."))<CR>
-nmap <Leader>ct :let @*=('rspec -f documentation ' . expand("%"))<CR>
+nmap <Leader>cs :let @+=expand("%")<CR>
+nmap <Leader>cl :let @+=expand("%:p")<CR>
+nmap <Leader>cr :let @+=('./docker/rspec -fd ' . expand("%") . ':' . line("."))<CR>
+nmap <Leader>ct :let @+=('./docker/rspec -fd ' . expand("%"))<CR>
 
 " RubyNewHashNotation
 command! -range=% RubyNewHashNotation silent execute <line1>.','.<line2>.'s/:\(\w\+\)\s*=>\s*/\1: /g'
@@ -250,7 +251,7 @@ function! RepositoryCopyLineUrl()
     let lines = '#L' . line1
   endif
 
-  let @*=(result . commit . '/' . expand("%") . lines)
+  let @+=(result . commit . '/' . expand("%") . lines)
 endfunction
 
 nmap <Leader>cg :call RepositoryCopyLineUrl()<CR>
