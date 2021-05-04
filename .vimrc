@@ -23,7 +23,7 @@ Plug 'adelarsq/vim-matchit'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
-
+Plug 'wookayin/fzf-ripgrep.vim'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'branch': 'release/1.x',
@@ -158,20 +158,33 @@ au BufRead,BufNewFile *.json.* set filetype=javascript
 " Tmux syntax
 au BufRead,BufNewFile .tmux.conf set ft=tmux
 
+"=================================
 "FZF Configiration
+"================================
 let g:fzf_buffers_jump = 1
 let g:fzf_layout = { 'down': '~40%' }
+
+" Search for files
 nnoremap <silent> <leader>f :GFiles<cr>
+nnoremap <silent> <leader>F :Files<cr>
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
+" search for buffer and history
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>h :History<CR>
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+"Search for lines (current and loaded buffers)
+nnoremap <Leader>l :BLines<CR>
+nnoremap <Leader>L :Lines<CR>
+
+" function! RipgrepFzf(query, fullscreen)
+"   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+"   let initial_command = printf(command_fmt, shellescape(a:query))
+"   let reload_command = printf(command_fmt, '{q}')
+"   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+" endfunction
+
+" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 "Ag
 if executable('ag')
@@ -271,3 +284,6 @@ nnoremap <Leader>ve :tabe $MYVIMRC<CR>
 nnoremap <Leader>vr :source $MYVIMRC<CR>
 
 nnoremap <silent> <Leader>n :!open %<CR><CR>
+
+vnoremap J :m '>+1<cr>gv=gv
+vnoremap K :m '<-2<cr>gv=gv
