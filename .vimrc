@@ -41,6 +41,7 @@ Plug 'prettier/vim-prettier', {
     \ 'ruby',
     \ 'html',
     \ 'swift' ] }
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
