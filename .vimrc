@@ -43,7 +43,7 @@ Plug 'prettier/vim-prettier', {
     \ 'swift' ] }
 Plug 'ryanoasis/vim-devicons'
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
-
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 colorscheme dracula
