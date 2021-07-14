@@ -47,6 +47,7 @@ Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 colorscheme dracula
+let g:dracula_colorterm=0
 set background=dark
 set termguicolors
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
@@ -55,8 +56,6 @@ set termguicolors
 
 set nocompatible
 
-" Use pathogen to easily modify the runtime path to include all
-" plugins under the ~/.vim/bundle directory
 filetype on
 filetype plugin on
 filetype indent on
