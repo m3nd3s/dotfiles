@@ -44,6 +44,7 @@ Plug 'prettier/vim-prettier', {
 Plug 'ryanoasis/vim-devicons'
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'erietz/vim-terminator'
 call plug#end()
 
 colorscheme dracula
@@ -158,6 +159,8 @@ au BufRead,BufNewFile *.json.* set filetype=javascript
 " Tmux syntax
 au BufRead,BufNewFile .tmux.conf set ft=tmux
 
+autocmd BufReadPost *.doc,*.docx,*.rtf,*.odp,*.odt silent %!pandoc "%" -tplain -o /dev/stdout
+
 "=================================
 "FZF Configiration
 "================================
@@ -179,7 +182,7 @@ nnoremap <Leader>L :Lines<CR>
 "Ag
 if executable('ag')
   " Use Ag over Grep
-  let g:ag_prg="ag -i --vimgrep --path-to-ignore ~/.ignore"
+  let g:ag_prg="ag --vimgrep --path-to-ignore ~/.ignore"
 end
 
 " Open new split panes to right and bottom, which feels more natural
@@ -221,7 +224,7 @@ set pastetoggle=<F2>
 set showmode
 
 " vim-rspec mappings
-let g:rspec_command = 'call Send_to_Tmux("rspec -f documentation {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("./docker/rspec -fd {spec}\n")'
 map <Leader>tt :call RunCurrentSpecFile()<CR>
 map <Leader>ts :call RunNearestSpec()<CR>
 map <Leader>tl :call RunLastSpec()<CR>
