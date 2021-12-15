@@ -280,3 +280,12 @@ nnoremap <silent> <Leader>n :!open %<CR><CR>
 
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
+
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️ '
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop'],
+\}
