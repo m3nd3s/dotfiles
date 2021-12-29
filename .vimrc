@@ -283,8 +283,8 @@ vnoremap K :m '<-2<cr>gv=gv
 
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️ '
-let g:ale_ruby_rubocop_executable = 'bundle'
 let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_text_changed = 0
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
