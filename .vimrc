@@ -45,6 +45,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'erietz/vim-terminator'
+Plug 'psliwka/vim-smoothie'
 call plug#end()
 
 colorscheme dracula
@@ -109,6 +110,7 @@ set mouse=a
 set ttymouse=xterm2
 set wildmenu "Better popup menu
 set confirm "Dialog to ask when closing unsave changes
+set scrolloff=3
 
 "Disable sounds and screen flashing
 set visualbell
