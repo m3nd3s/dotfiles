@@ -2,7 +2,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'rking/ag.vim'
 Plug 'tomtom/tlib_vim'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
@@ -45,7 +45,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'erietz/vim-terminator'
-Plug 'psliwka/vim-smoothie'
+Plug 'tpope/vim-abolish'
 call plug#end()
 
 colorscheme dracula
