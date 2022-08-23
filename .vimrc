@@ -291,3 +291,6 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
 \}
+
+# Format JSON
+nmap <Leader>p :%!jq .<CR>
