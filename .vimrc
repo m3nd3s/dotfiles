@@ -292,5 +292,5 @@ let g:ale_linters = {
 \   'ruby': ['rubocop'],
 \}
 
-# Format JSON
+" Format JSON
 nmap <Leader>p :%!jq .<CR>
