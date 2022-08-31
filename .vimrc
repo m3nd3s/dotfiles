@@ -46,6 +46,7 @@ Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'erietz/vim-terminator'
 Plug 'tpope/vim-abolish'
+Plug 'dkarter/bullets.vim'
 call plug#end()
 
 colorscheme dracula
