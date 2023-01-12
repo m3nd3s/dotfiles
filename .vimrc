@@ -47,6 +47,9 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'erietz/vim-terminator'
 Plug 'tpope/vim-abolish'
 Plug 'dkarter/bullets.vim'
+Plug 'hashivim/vim-terraform'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 call plug#end()
 
 colorscheme dracula
@@ -227,7 +230,7 @@ set pastetoggle=<F2>
 set showmode
 
 " vim-rspec mappings
-let g:rspec_command = 'call Send_to_Tmux("./docker/rspec -fd {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("rspec -fd {spec}\n")'
 map <Leader>tt :call RunCurrentSpecFile()<CR>
 map <Leader>ts :call RunNearestSpec()<CR>
 map <Leader>tl :call RunLastSpec()<CR>
@@ -235,8 +238,9 @@ map <Leader>ta :call RunAllSpecs()<CR>
 
 nmap <Leader>cs :let @+=expand("%")<CR>
 nmap <Leader>cl :let @+=expand("%:p")<CR>
-nmap <Leader>cr :let @+=('./docker/rspec -fd ' . expand("%") . ':' . line("."))<CR>
-nmap <Leader>ct :let @+=('./docker/rspec -fd ' . expand("%"))<CR>
+nmap <Leader>cc :let @+=expand("%:t")<CR>
+nmap <Leader>cr :let @+=('rspec -fd ' . expand("%") . ':' . line("."))<CR>
+nmap <Leader>ct :let @+=('rspec -fd ' . expand("%p"))<CR>
 
 " RubyNewHashNotation
 command! -range=% RubyNewHashNotation silent execute <line1>.','.<line2>.'s/:\(\w\+\)\s*=>\s*/\1: /g'
@@ -290,8 +294,11 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_linters = {
 \   'javascript': ['eslint'],
-\   'ruby': ['rubocop'],
+\   'ruby': ['rubocop', 'reek'],
 \}
 
 " Format JSON
 nmap <Leader>p :%!jq .<CR>
+
+"Copy to system clipboard - AKA yank over ssh
+vnoremap <leader>c :OSCYank<CR>
