@@ -20,7 +20,7 @@ Plug 'honza/vim-snippets'
 Plug 'keith/rspec.vim'
 Plug 'thoughtbot/vim-rspec'
 Plug 'adelarsq/vim-matchit'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'wookayin/fzf-ripgrep.vim'
@@ -49,9 +49,18 @@ Plug 'tpope/vim-abolish'
 Plug 'dkarter/bullets.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'ojroques/vim-oscyank', {'branch': 'main'}
-Plug 'sangdol/mintabline.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'wfleming/vim-codeclimate'
+Plug 'github/copilot.vim'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+
+Plug 'nvim-tree/nvim-web-devicons' " optional
+Plug 'nvim-tree/nvim-tree.lua'
 call plug#end()
+
+source /usr/share/doc/fzf/examples/fzf.vim
 
 colorscheme dracula
 let g:dracula_colorterm=0
@@ -60,6 +69,7 @@ set termguicolors
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
+set cursorline
 
 set nocompatible
 
@@ -112,7 +122,11 @@ set autoread "Teoricamente deve recarregar o arquivo quando alterado
 set guioptions-=r " Removes right hand scroll bar
 set clipboard=unnamedplus
 set mouse=a
-set ttymouse=xterm2
+
+if !has('nvim')
+  set ttymouse=xterm2
+endif
+
 set wildmenu "Better popup menu
 set confirm "Dialog to ask when closing unsave changes
 set scrolloff=3
@@ -211,12 +225,12 @@ set ttimeoutlen=50
 let g:airline_theme='dracula'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#formatter = 'unique_tail'
-" let g:airline#extensions#tabline#show_close_button = 0
-" let g:airline#extensions#tabline#show_buffers = 0
-" let g:airline#extensions#tabline#show_splits = 0
-" let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
 
 
 " Remove trailing whitespace
@@ -288,8 +302,9 @@ nnoremap <silent> <Leader>n :!open %<CR><CR>
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
 
+let g:ale_completion_enabled = 1
 let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️ '
+let g:ale_sign_warning = 'W!'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_linters = {
@@ -302,3 +317,15 @@ nmap <Leader>p :%!jq .<CR>
 
 "Copy to system clipboard - AKA yank over ssh
 vnoremap <leader>c :OSCYank<CR>
+
+
+"CodeClimate
+nmap <Leader>aa :CodeClimateAnalyzeProject<CR>
+nmap <Leader>ao :CodeClimateAnalyzeOpenFiles<CR>
+nmap <Leader>af :CodeClimateAnalyzeCurrentFile<CR>
+
+" Transparent background
+highlight Normal guibg=none
+highlight NonText guibg=none
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
