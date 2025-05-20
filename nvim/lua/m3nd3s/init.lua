@@ -1,0 +1,5 @@
+require("m3nd3s.remap")
+require("m3nd3s.autocomplete")
+require("m3nd3s.colors")
+require("m3nd3s.settings")
+require("m3nd3s.packer")
