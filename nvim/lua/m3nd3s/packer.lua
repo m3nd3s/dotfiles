@@ -55,4 +55,38 @@ return require('packer').startup(function(use)
 
   use "tpope/vim-rails"
 
+  use({
+    "L3MON4D3/LuaSnip",
+    requires = { "rafamadriz/friendly-snippets" },
+    tag = "v2.*"
+  })
+
+  use {
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup {
+        -- config
+      }
+    end,
+    requires = {'nvim-tree/nvim-web-devicons'}
+  }
+
+  -- use {
+  --   "nvim-neotest/neotest",
+  --   requires = {
+  --     "nvim-neotest/nvim-nio",
+  --     "nvim-lua/plenary.nvim",
+  --     "antoinemadec/FixCursorHold.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "olimorris/neotest-rspec"
+  --   },
+  --   config = function()
+  --     require("neotest").setup({
+  --       adapters = {
+  --         require("neotest-rspec"),
+  --       }
+  --     })
+  -- end
+  -- }
 end)
