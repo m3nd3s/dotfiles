@@ -16,7 +16,7 @@ return require('packer').startup(function(use)
   use 'binhtran432k/dracula.nvim'
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use 'nvim-treesitter/playground'
-  use 'folke/tokyonight.nvim'
+  -- use 'folke/tokyonight.nvim'
   use('neovim/nvim-lspconfig', { tag = 'v1.8.0', pin = true })
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
@@ -71,6 +71,10 @@ return require('packer').startup(function(use)
     end,
     requires = {'nvim-tree/nvim-web-devicons'}
   }
+
+  use 'rcarriga/nvim-notify'
+
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- use {
   --   "nvim-neotest/neotest",
