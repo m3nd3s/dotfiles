@@ -13,7 +13,6 @@ return require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use 'binhtran432k/dracula.nvim'
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use 'nvim-treesitter/playground'
   use('neovim/nvim-lspconfig', { tag = 'v1.8.0', pin = true })
@@ -75,21 +74,21 @@ return require('packer').startup(function(use)
 
   use { "catppuccin/nvim", as = "catppuccin" }
 
-  -- use {
-  --   "nvim-neotest/neotest",
-  --   requires = {
-  --     "nvim-neotest/nvim-nio",
-  --     "nvim-lua/plenary.nvim",
-  --     "antoinemadec/FixCursorHold.nvim",
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "olimorris/neotest-rspec"
-  --   },
-  --   config = function()
-  --     require("neotest").setup({
-  --       adapters = {
-  --         require("neotest-rspec"),
-  --       }
-  --     })
-  -- end
-  -- }
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "olimorris/neotest-rspec",
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-rspec"),
+        }
+      })
+    end
+  }
 end)
