@@ -18,13 +18,6 @@ vim.opt.swapfile = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.backup = false
+vim.opt.colorcolumn = "120"
 
 vim.opt.clipboard = "unnamedplus"
-
--- Set background to transparent
--- vim.cmd [[
---   highlight Normal guibg=none
---   highlight NonText guibg=none
---   highlight Normal ctermbg=none
---   highlight NonText ctermbg=none
--- ]]
