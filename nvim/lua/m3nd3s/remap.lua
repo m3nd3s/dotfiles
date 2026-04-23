@@ -14,8 +14,3 @@ vim.keymap.set('n', '<leader>cr', insertFullPath, { noremap = true, silent = tru
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
-
--- Neotest keymap
-vim.keymap.set('n', '<leader>tr', '<cmd>Neotest run<cr>')
-vim.keymap.set('n', '<leader>ti', '<cmd>Neotest output<cr>')
-vim.keymap.set('n', '<leader>ts', '<cmd>Neotest summary<cr>')

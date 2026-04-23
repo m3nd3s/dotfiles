@@ -10,7 +10,22 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
     -- or                            , branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { 
+      {'nvim-lua/plenary.nvim'},
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+    }
+  }
+
+  use {
+    "AckslD/nvim-neoclip.lua",
+    requires = {
+      -- you'll need at least one of these
+      -- {'nvim-telescope/telescope.nvim'},
+      -- {'ibhagwan/fzf-lua'},
+    },
+    config = function()
+      require('neoclip').setup()
+    end,
   }
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -59,45 +74,63 @@ return require('packer').startup(function(use)
     tag = "v2.*"
   })
 
-  use {
-    'nvimdev/dashboard-nvim',
-    event = 'VimEnter',
-    config = function()
-      require('dashboard').setup {
-        -- config
-      }
-    end,
-    requires = {'nvim-tree/nvim-web-devicons'}
-  }
+  -- use {
+  --   'nvimdev/dashboard-nvim',
+  --   event = 'VimEnter',
+  --   config = function()
+  --     require('dashboard').setup {
+  --       -- config
+  --     }
+  --   end,
+  --   requires = {'nvim-tree/nvim-web-devicons'}
+  -- }
 
   use 'rcarriga/nvim-notify'
 
   use { "catppuccin/nvim", as = "catppuccin" }
 
+  use "m4xshen/smartcolumn.nvim"
+
+  use { 
+    'alvarosevilla95/luatab.nvim', 
+    requires = 'nvim-tree/nvim-web-devicons' 
+  }
+
   use {
-    "nvim-neotest/neotest",
-    requires = {
-      "nvim-neotest/nvim-nio",
-      "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "olimorris/neotest-rspec",
-    },
-    config = function()
-      require("neotest").setup({
-        adapters = {
-          require("neotest-rspec"),
-        }
-      })
+    'andymass/vim-matchup',
+    setup = function()
+      -- may set any options here
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end
   }
 
-  use "m4xshen/smartcolumn.nvim"
+  use {
+    "ellisonleao/glow.nvim", 
+    config = function() 
+      require("glow").setup() 
+    end
+  }
 
-  use { 'alvarosevilla95/luatab.nvim', requires='nvim-tree/nvim-web-devicons' }
+  use { "kassio/neoterm" }
 
-  -- These optional plugins should be loaded directly because of a bug in Packer lazy loading
-  -- use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
-  -- use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
-  -- use 'romgrk/barbar.nvim'
+  use {
+    'ms-jpq/coq_nvim', 
+    branch = 'coq',
+    event = "InsertEnter",
+    opt = true,
+    run = ":COQdeps",
+    requires = {
+      { 'ms-jpq/coq.artifacts', branch = 'artifacts'}
+    },
+    disable = false,
+  }
+
+  use {
+    "esmuellert/codediff.nvim",
+    cmd = "CodeDiff",
+    config = function()
+      require("codediff").setup()
+    end
+  }
+
 end)

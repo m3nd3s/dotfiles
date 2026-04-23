@@ -19,5 +19,6 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.backup = false
 vim.opt.colorcolumn = "120"
-
 vim.opt.clipboard = "unnamedplus"
+vim.opt.splitbelow = true
+vim.opt.splitright = true
