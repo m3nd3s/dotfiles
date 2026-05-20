@@ -8,8 +8,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
-    -- or                            , branch = '0.1.x',
+    'nvim-telescope/telescope.nvim', version = '*',
     requires = { 
       {'nvim-lua/plenary.nvim'},
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
@@ -28,8 +27,7 @@ return require('packer').startup(function(use)
     end,
   }
 
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-  use 'nvim-treesitter/playground'
+  use('nvim-treesitter/nvim-treesitter', { branch = 'main', run = ':TSUpdate'})
   use('neovim/nvim-lspconfig', { tag = 'v1.8.0', pin = true })
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/nvim-cmp'
@@ -73,17 +71,6 @@ return require('packer').startup(function(use)
     requires = { "rafamadriz/friendly-snippets" },
     tag = "v2.*"
   })
-
-  -- use {
-  --   'nvimdev/dashboard-nvim',
-  --   event = 'VimEnter',
-  --   config = function()
-  --     require('dashboard').setup {
-  --       -- config
-  --     }
-  --   end,
-  --   requires = {'nvim-tree/nvim-web-devicons'}
-  -- }
 
   use 'rcarriga/nvim-notify'
 
@@ -130,6 +117,14 @@ return require('packer').startup(function(use)
     cmd = "CodeDiff",
     config = function()
       require("codediff").setup()
+    end
+  }
+
+  use {
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    config = function()
+      require("colorizer").setup()
     end
   }
 

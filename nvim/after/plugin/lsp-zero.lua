@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- )
 
 -- .ruby_lsp.setup({})
- vim.lsp.enable('ruby_lsp')
+vim.lsp.enable('ruby_lsp')
 
 local cmp = require('cmp')
 

@@ -6,6 +6,8 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 vim.keymap.set('n', '<leader>fs', builtin.grep_string, { desc = 'Telescope grep string' })
 vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Telescope search keymaps' })
 vim.keymap.set('n', '<leader>bb', builtin.buffers, { desc = 'Telescope open files' })
+vim.keymap.set('n', '<leader>of', builtin.oldfiles, { desc = 'Telescope open old files' })
+vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = 'Telescope git commits' })
 
 require("telescope").setup({
   defaults = {
