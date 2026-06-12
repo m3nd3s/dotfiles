@@ -8,7 +8,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-    'nvim-telescope/telescope.nvim', version = '*',
+    'nvim-telescope/telescope.nvim', version = '0.2.2',
     requires = { 
       {'nvim-lua/plenary.nvim'},
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
@@ -38,16 +38,17 @@ return require('packer').startup(function(use)
     },
   }
 
-  use {
-    'juacker/git-link.nvim',
-    config = function()
-      -- Set up your keymaps
-      vim.keymap.set('n', '<leader>gu', function() require("git-link.main").copy_line_url() end)
-      vim.keymap.set('n', '<leader>go', function() require("git-link.main").open_line_url() end)
-      vim.keymap.set('x', '<leader>gu', function() require("git-link.main").copy_line_url() end)
-      vim.keymap.set('x', '<leader>go', function() require("git-link.main").open_line_url() end)
-    end
-  }
+  use { "almo7aya/openingh.nvim" }
+  -- use {
+  --   'juacker/git-link.nvim',
+  --   config = function()
+  --     -- Set up your keymaps
+  --     vim.keymap.set('n', '<leader>gu', function() require("git-link.main").copy_line_url() end)
+  --     vim.keymap.set('n', '<leader>go', function() require("git-link.main").open_line_url() end)
+  --     vim.keymap.set('x', '<leader>gu', function() require("git-link.main").copy_line_url() end)
+  --     vim.keymap.set('x', '<leader>go', function() require("git-link.main").open_line_url() end)
+  --   end
+  -- }
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -127,5 +128,7 @@ return require('packer').startup(function(use)
       require("colorizer").setup()
     end
   }
+
+  use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
 
 end)

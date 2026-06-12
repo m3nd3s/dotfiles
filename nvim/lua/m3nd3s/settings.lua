@@ -22,3 +22,10 @@ vim.opt.colorcolumn = "120"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+vim.opt.encoding = 'utf-8'
+vim.scriptencoding = 'utf-8'
+vim.opt.fileencoding = 'utf-8'
+
+vim.opt.spell = true
+vim.opt.spelllang = { 'en', 'pt' }
