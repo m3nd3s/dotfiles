@@ -16,5 +16,8 @@ require("telescope").setup({
         preview_cutoff = 0,
       },
     },
+    file_ignore_patterns = {
+      "graphify-out/"
+    }
   },
 })

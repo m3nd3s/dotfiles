@@ -28,9 +28,12 @@ return require('packer').startup(function(use)
   }
 
   use('nvim-treesitter/nvim-treesitter', { branch = 'main', run = ':TSUpdate'})
-  use('neovim/nvim-lspconfig', { tag = 'v1.8.0', pin = true })
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/nvim-cmp'
+  use { 'neovim/nvim-lspconfig' }
+  use({ "ms-jpq/coq_nvim", branch = "coq" })
+  use({ "ms-jpq/coq.thirdparty", branch = "3p", })
+
+  -- use 'hrsh7th/cmp-nvim-lsp'
+  -- use 'hrsh7th/nvim-cmp'
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
@@ -100,18 +103,6 @@ return require('packer').startup(function(use)
   }
 
   use { "kassio/neoterm" }
-
-  use {
-    'ms-jpq/coq_nvim', 
-    branch = 'coq',
-    event = "InsertEnter",
-    opt = true,
-    run = ":COQdeps",
-    requires = {
-      { 'ms-jpq/coq.artifacts', branch = 'artifacts'}
-    },
-    disable = false,
-  }
 
   use {
     "esmuellert/codediff.nvim",
