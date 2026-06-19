@@ -30,10 +30,9 @@ return require('packer').startup(function(use)
   use('nvim-treesitter/nvim-treesitter', { branch = 'main', run = ':TSUpdate'})
   use { 'neovim/nvim-lspconfig' }
   use({ "ms-jpq/coq_nvim", branch = "coq" })
+  use { "ms-jpq/coq.artifacts", branch = "artifacts" }
   use({ "ms-jpq/coq.thirdparty", branch = "3p", })
 
-  -- use 'hrsh7th/cmp-nvim-lsp'
-  -- use 'hrsh7th/nvim-cmp'
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
@@ -42,16 +41,6 @@ return require('packer').startup(function(use)
   }
 
   use { "almo7aya/openingh.nvim" }
-  -- use {
-  --   'juacker/git-link.nvim',
-  --   config = function()
-  --     -- Set up your keymaps
-  --     vim.keymap.set('n', '<leader>gu', function() require("git-link.main").copy_line_url() end)
-  --     vim.keymap.set('n', '<leader>go', function() require("git-link.main").open_line_url() end)
-  --     vim.keymap.set('x', '<leader>gu', function() require("git-link.main").copy_line_url() end)
-  --     vim.keymap.set('x', '<leader>go', function() require("git-link.main").open_line_url() end)
-  --   end
-  -- }
 
   use {
     'nvim-lualine/lualine.nvim',

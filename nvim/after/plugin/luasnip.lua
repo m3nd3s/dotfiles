@@ -9,5 +9,3 @@ vim.keymap.set({"i", "s"}, "<C-E>", function()
 		ls.change_choice(1)
 	end
 end, {silent = true})
-
-require("luasnip.loaders.from_vscode").lazy_load()
