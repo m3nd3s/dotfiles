@@ -15,17 +15,7 @@ return require('packer').startup(function(use)
     }
   }
 
-  use {
-    "AckslD/nvim-neoclip.lua",
-    requires = {
-      -- you'll need at least one of these
-      -- {'nvim-telescope/telescope.nvim'},
-      -- {'ibhagwan/fzf-lua'},
-    },
-    config = function()
-      require('neoclip').setup()
-    end,
-  }
+  use { "AckslD/nvim-neoclip.lua" }
 
   use('nvim-treesitter/nvim-treesitter', { branch = 'main', run = ':TSUpdate'})
   use { 'neovim/nvim-lspconfig' }
@@ -59,14 +49,6 @@ return require('packer').startup(function(use)
 
   use "tpope/vim-rails"
 
-  use({
-    "L3MON4D3/LuaSnip",
-    requires = { "rafamadriz/friendly-snippets" },
-    tag = "v2.*"
-  })
-
-  use 'rcarriga/nvim-notify'
-
   use { "catppuccin/nvim", as = "catppuccin" }
 
   use "m4xshen/smartcolumn.nvim"
@@ -76,13 +58,7 @@ return require('packer').startup(function(use)
     requires = 'nvim-tree/nvim-web-devicons' 
   }
 
-  use {
-    'andymass/vim-matchup',
-    setup = function()
-      -- may set any options here
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end
-  }
+  use { 'andymass/vim-matchup' }
 
   use {
     "ellisonleao/glow.nvim", 
@@ -91,24 +67,7 @@ return require('packer').startup(function(use)
     end
   }
 
-  use { "kassio/neoterm" }
-
-  use {
-    "esmuellert/codediff.nvim",
-    cmd = "CodeDiff",
-    config = function()
-      require("codediff").setup()
-    end
-  }
-
-  use {
-    "catgoose/nvim-colorizer.lua",
-    event = "BufReadPre",
-    config = function()
-      require("colorizer").setup()
-    end
-  }
+  use { 'sindrets/diffview.nvim', requires = 'nvim-tree/nvim-web-devicons' }
 
   use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
-
 end)

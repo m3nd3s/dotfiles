@@ -14,12 +14,30 @@ require("nvim-tree").setup({
     sorter = "case_sensitive",
   },
   view = {
-    width = 30,
+    width = 35,
+    side = "left"
   },
   renderer = {
-    group_empty = true,
+    group_empty = false,
+    icons = {
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = true, -- Ativa ícones do Git (indica se o arquivo é novo, modificado, etc.)
+      },
+    }
   },
   filters = {
     dotfiles = true,
+    custom = { "^\\.git$" }, -- Esconde apenas a pasta interna .git para não poluir
+  },
+  git = {
+    enable = true,
+    ignore = false, -- Se True, ele esconde os arquivos que estão no .gitignore (como logs ou .env). Queremos vê-los!
+  },
+  update_focused_file = {
+    enable = true, -- O PULO DO GATO: Se você mudar de arquivo usando o Telescope, a nvim-tree foca automaticamente no arquivo aberto!
+    update_root = false,
   },
 })
