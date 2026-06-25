@@ -9,6 +9,7 @@ vim.keymap.set('n', '<leader>bb', builtin.buffers, { desc = 'Telescope open file
 vim.keymap.set('n', '<leader>of', builtin.oldfiles, { desc = 'Telescope open old files' })
 vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = 'Telescope git commits' })
 vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope LSP Diagnostics' })
+
 vim.keymap.set('n', '<leader>fz', builtin.current_buffer_fuzzy_find, { desc = 'Telescope fuzz current buffer' })
 -- Abre o Telescope mostrando todo o histórico de yanks (copiados)
 vim.keymap.set('n', '<leader>fy', ':Telescope neoclip<CR>', { desc = 'Telescope find yanks' })
@@ -37,5 +38,11 @@ require("telescope").setup({
       "%.ruby%-lsp/",    -- Ignora o cache do Ruby LSP (usa % para escapar o ponto)
     }
   },
+  pickers = {
+    -- 💡 AQUI ESTÁ A MÁGICA PARA OS DIAGNÓSTICOS
+    diagnostics = {
+      initial_mode = "normal",   -- Abre em modo normal para você navegar rápido com j/k
+    }
+  }
 })
 require('telescope').load_extension('neoclip')

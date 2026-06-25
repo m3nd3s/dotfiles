@@ -70,4 +70,9 @@ return require('packer').startup(function(use)
   use { 'sindrets/diffview.nvim', requires = 'nvim-tree/nvim-web-devicons' }
 
   use 'lewis6991/gitsigns.nvim' -- OPTIONAL: for git status
+
+  use({
+    "nvimtools/none-ls.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+  })
 end)
