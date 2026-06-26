@@ -30,7 +30,11 @@ return require('packer').startup(function(use)
     },
   }
 
-  use { "almo7aya/openingh.nvim" }
+  -- use { "almo7aya/openingh.nvim" }
+  use {
+    'ruifm/gitlinker.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+  }
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -53,10 +57,11 @@ return require('packer').startup(function(use)
 
   use "m4xshen/smartcolumn.nvim"
 
-  use { 
-    'alvarosevilla95/luatab.nvim', 
-    requires = 'nvim-tree/nvim-web-devicons' 
-  }
+  -- use { 
+  --   'alvarosevilla95/luatab.nvim', 
+  --   requires = 'nvim-tree/nvim-web-devicons' 
+  -- }
+  use { 'nanozuki/tabby.nvim', requires = 'nvim-tree/nvim-web-devicons' }
 
   use { 'andymass/vim-matchup' }
 
@@ -66,6 +71,9 @@ return require('packer').startup(function(use)
       require("glow").setup() 
     end
   }
+  --
+  -- Adicione como uma linha independente no seu packer.lua para uso global
+  use { 'nvim-tree/nvim-web-devicons' }
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-tree/nvim-web-devicons' }
 

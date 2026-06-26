@@ -29,3 +29,5 @@ vim.opt.fileencoding = 'utf-8'
 
 vim.opt.spell = true
 vim.opt.spelllang = { 'en', 'pt' }
+
+vim.opt.mouse = 'a' -- Ativa o mouse em todos os modos (normal, insert, etc)

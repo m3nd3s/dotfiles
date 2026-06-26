@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
+  ["gitlinker.nvim"] = {
+    loaded = true,
+    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/gitlinker.nvim",
+    url = "https://github.com/ruifm/gitlinker.nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -114,11 +119,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  ["luatab.nvim"] = {
-    loaded = true,
-    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/luatab.nvim",
-    url = "https://github.com/alvarosevilla95/luatab.nvim"
   },
   ["none-ls.nvim"] = {
     loaded = true,
@@ -156,11 +156,6 @@ _G.packer_plugins = {
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
-  ["openingh.nvim"] = {
-    loaded = true,
-    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/openingh.nvim",
-    url = "https://github.com/almo7aya/openingh.nvim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -175,6 +170,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/smartcolumn.nvim",
     url = "https://github.com/m4xshen/smartcolumn.nvim"
+  },
+  ["tabby.nvim"] = {
+    loaded = true,
+    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/tabby.nvim",
+    url = "https://github.com/nanozuki/tabby.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
@@ -199,14 +199,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-surround
-time([[Config for nvim-surround]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
-time([[Config for nvim-surround]], false)
 -- Config for: glow.nvim
 time([[Config for glow.nvim]], true)
 try_loadstring("\27LJ\2\n2\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tglow\frequire\0", "config", "glow.nvim")
 time([[Config for glow.nvim]], false)
+-- Config for: nvim-surround
+time([[Config for nvim-surround]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
+time([[Config for nvim-surround]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
