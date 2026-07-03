@@ -13,6 +13,16 @@ vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope LSP D
 vim.keymap.set('n', '<leader>fz', builtin.current_buffer_fuzzy_find, { desc = 'Telescope fuzz current buffer' })
 -- Abre o Telescope mostrando todo o histórico de yanks (copiados)
 vim.keymap.set('n', '<leader>fy', ':Telescope neoclip<CR>', { desc = 'Telescope find yanks' })
+--
+-- Atalho para buscar TUDO, incluindo as pastas ignoradas (.agents, graphify-out, etc)
+vim.keymap.set('n', '<leader>fa', function()
+  builtin.find_files({
+    no_ignore = true,          -- Ignora o .gitignore
+    hidden = true,             -- Mostra arquivos ocultos
+    file_ignore_patterns = {}, -- 💡 Limpa os ignores globais temporariamente para esta busca
+    prompt_title = "Buscar Tudo (Incluindo Ignorados)",
+  })
+end, { desc = 'Telescope Find All Files' })
 
 require("telescope").setup({
   defaults = {
@@ -28,20 +38,34 @@ require("telescope").setup({
       "--with-filename",
       "--line-number",
       "--column",
-      "--smart-case", -- <- O pulo do gato para buscas mais inteligentes
+      "--smart-case",
+      "--hidden",
+      "--glob=!**/graphify-out/*",
+      "--glob=!**/.agents/*",
+      "--glob=!**/.cursor/*",
     },
     file_ignore_patterns = {
-      "graphify-out/",
-      "node_modules/",   -- Ignora pacotes Node
-      "vendor/",         -- Opcional: ignora gems vendadas se poluírem a busca
-      "tmp/",            -- Ignora arquivos temporários do Rails
-      "%.ruby%-lsp/",    -- Ignora o cache do Ruby LSP (usa % para escapar o ponto)
+      "^%.cursor/",        -- Ignora .cursor na raiz (escapando o ponto)
+      "%.cursor/",         -- Ignora .cursor em subníveis
+      "^%.agents/",        -- Ignora .agents na raiz (escapando o ponto)
+      "%.agents/",         -- Ignora .agents em subníveis
+      "^graphify%-out/",   -- Ignora a pasta na raiz do projeto (escapando o hífen)
+      "graphify%-out/",    -- Ignora a pasta em qualquer subnível
+      "^node_modules/",    -- Ignora node_modules na raiz
+      "node_modules/",     
+      "^vendor/",          -- Ignora vendor na raiz (Gems)
+      "^tmp/",             -- Ignora temporários do Rails
+      "%.ruby%-lsp/",      -- Ignora o cache do Ruby LSP
     }
   },
   pickers = {
-    -- 💡 AQUI ESTÁ A MÁGICA PARA OS DIAGNÓSTICOS
+    -- Garante que o localizador de arquivos também aplique os filtros acima de forma rígida
+    find_files = {
+      hidden = true,       -- Se quiser ver arquivos ocultos (como .gitignore), mas ignorando as pastas acima
+      no_ignore = false,   -- Garante que ele respeite arquivos de ignore do Git (.gitignore)
+    },
     diagnostics = {
-      initial_mode = "normal",   -- Abre em modo normal para você navegar rápido com j/k
+      initial_mode = "normal",
     }
   }
 })
