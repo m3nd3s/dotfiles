@@ -30,12 +30,6 @@ return require('packer').startup(function(use)
     },
   }
 
-  -- use { "almo7aya/openingh.nvim" }
-  use {
-    'ruifm/gitlinker.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-  }
-
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
@@ -83,4 +77,21 @@ return require('packer').startup(function(use)
     "nvimtools/none-ls.nvim",
     requires = { "nvim-lua/plenary.nvim" },
   })
+
+  use {
+    'nvim-neotest/neotest',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'antoinemadec/FixCursorHold.nvim',
+      'olimorris/neotest-rspec',
+      'nvim-neotest/nvim-nio',
+      'stevearc/overseer.nvim'
+    }
+  }
+  use { 'm3nd3s/bifrost.nvim' }
+
+  use {
+    'coder/claudecode.nvim',
+  }
 end)

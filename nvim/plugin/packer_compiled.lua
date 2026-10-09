@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/ALMIR.MENDES/.cache/nvim/packer_hererocks/2.1.1782726002/share/lua/5.1/?.lua;/home/ALMIR.MENDES/.cache/nvim/packer_hererocks/2.1.1782726002/share/lua/5.1/?/init.lua;/home/ALMIR.MENDES/.cache/nvim/packer_hererocks/2.1.1782726002/lib/luarocks/rocks-5.1/?.lua;/home/ALMIR.MENDES/.cache/nvim/packer_hererocks/2.1.1782726002/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/ALMIR.MENDES/.cache/nvim/packer_hererocks/2.1.1782726002/lib/lua/5.1/?.so"
+local package_path_str = "/home/ALMIR.MENDES/.cache/nvim/packer_hererocks/2.1.1788856981/share/lua/5.1/?.lua;/home/ALMIR.MENDES/.cache/nvim/packer_hererocks/2.1.1788856981/share/lua/5.1/?/init.lua;/home/ALMIR.MENDES/.cache/nvim/packer_hererocks/2.1.1788856981/lib/luarocks/rocks-5.1/?.lua;/home/ALMIR.MENDES/.cache/nvim/packer_hererocks/2.1.1788856981/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/ALMIR.MENDES/.cache/nvim/packer_hererocks/2.1.1788856981/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -74,10 +74,25 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["FixCursorHold.nvim"] = {
+    loaded = true,
+    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/FixCursorHold.nvim",
+    url = "https://github.com/antoinemadec/FixCursorHold.nvim"
+  },
+  ["bifrost.nvim"] = {
+    loaded = true,
+    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/bifrost.nvim",
+    url = "https://github.com/m3nd3s/bifrost.nvim"
+  },
   catppuccin = {
     loaded = true,
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
+  },
+  ["claudecode.nvim"] = {
+    loaded = true,
+    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/claudecode.nvim",
+    url = "https://github.com/coder/claudecode.nvim"
   },
   ["coq.artifacts"] = {
     loaded = true,
@@ -99,11 +114,6 @@ _G.packer_plugins = {
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
-  ["gitlinker.nvim"] = {
-    loaded = true,
-    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/gitlinker.nvim",
-    url = "https://github.com/ruifm/gitlinker.nvim"
-  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -120,6 +130,16 @@ _G.packer_plugins = {
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  neotest = {
+    loaded = true,
+    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/neotest",
+    url = "https://github.com/nvim-neotest/neotest"
+  },
+  ["neotest-rspec"] = {
+    loaded = true,
+    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/neotest-rspec",
+    url = "https://github.com/olimorris/neotest-rspec"
+  },
   ["none-ls.nvim"] = {
     loaded = true,
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/none-ls.nvim",
@@ -134,6 +154,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/nvim-neoclip.lua",
     url = "https://github.com/AckslD/nvim-neoclip.lua"
+  },
+  ["nvim-nio"] = {
+    loaded = true,
+    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/nvim-nio",
+    url = "https://github.com/nvim-neotest/nvim-nio"
   },
   ["nvim-surround"] = {
     config = { "\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0" },
@@ -155,6 +180,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
+  },
+  ["overseer.nvim"] = {
+    loaded = true,
+    path = "/home/ALMIR.MENDES/.local/share/nvim/site/pack/packer/start/overseer.nvim",
+    url = "https://github.com/stevearc/overseer.nvim"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -199,14 +229,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-surround
-time([[Config for nvim-surround]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
-time([[Config for nvim-surround]], false)
 -- Config for: glow.nvim
 time([[Config for glow.nvim]], true)
 try_loadstring("\27LJ\2\n2\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tglow\frequire\0", "config", "glow.nvim")
 time([[Config for glow.nvim]], false)
+-- Config for: nvim-surround
+time([[Config for nvim-surround]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
+time([[Config for nvim-surround]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
