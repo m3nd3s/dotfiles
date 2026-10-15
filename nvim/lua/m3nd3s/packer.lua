@@ -94,4 +94,12 @@ return require('packer').startup(function(use)
   use {
     'coder/claudecode.nvim',
   }
+
+  use {
+    'MeanderingProgrammer/render-markdown.nvim',
+    requires = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('render-markdown').setup({})
+    end
+  }
 end)

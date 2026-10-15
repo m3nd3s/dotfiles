@@ -61,8 +61,12 @@ require("telescope").setup({
   pickers = {
     -- Garante que o localizador de arquivos também aplique os filtros acima de forma rígida
     find_files = {
-      hidden = true,       -- Se quiser ver arquivos ocultos (como .gitignore), mas ignorando as pastas acima
-      no_ignore = false,   -- Garante que ele respeite arquivos de ignore do Git (.gitignore)
+      find_command = {
+        "rg", "--files", "--color", "never",
+        "--hidden",           -- Mostra arquivos ocultos (ex.: .gitignore)
+        "--no-ignore",        -- Mostra o que está no .gitignore (ex.: temp-docs/)
+        "--glob=!**/.git/*",  -- Mas sem o conteúdo do diretório .git
+      },
     },
     diagnostics = {
       initial_mode = "normal",
